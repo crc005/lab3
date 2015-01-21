@@ -28,21 +28,23 @@ function projectClick(e) {
     var projectTitle = $(this).find("p").text();
     var jumbotronHeader = $(".jumbotron h1");
     jumbotronHeader.text(projectTitle);
+
     var containingProject = $(this).closest(".project");
     var description = $(containingProject).find(".project-description");
     if (description.length == 0) {
        $(containingProject).append("<div class='project-description'><p>Description of the project.</p></div>");
     } else {
-    	$(description).hide();
+    	$(description).toggle();
     }
 }
 
 function updateClick(e) {
-    var new_size = $("#project").val();
-    $(new_size).animate({
-    	width: $("#width").val()
+    var projectID = $('#project').val();
+    $(projectID).animate({
+    	width: $('#width').val()
     });
-    
-    var new_description = $("#description").val();
-    $(".project-description").text(new_description);
+   
+    var new_description = $(projectID).find(".project-description");
+    var new_text = $('#description').val();
+    $(new_description).text(new_text);
 }
